@@ -6,6 +6,7 @@
  * Mucona Labs 2017
  */
 
+namespace PIMManager;
 
 class PIMManager
 {
