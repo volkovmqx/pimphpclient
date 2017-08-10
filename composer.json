@@ -1,0 +1,18 @@
+{
+    "name": "volkovmqx/pimphpclient",
+    "description": "a basic Client to deal with Akeneo PIM REST Interface",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Lotfi Messaoudi",
+            "email": "volkovmqx@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+    "psr-4": {
+      "PIMManager\\": "src/PIMManager/"
+        }
+    }
+}
