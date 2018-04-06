@@ -126,7 +126,13 @@ class PIMManager
      */
     public function addRessource($type, $ressource)
     {
-        return true;
+        return $this->sendRequest(
+          $type,
+          $this->generateToken(),
+          'POST',
+          'Bearer',
+          json_encode($ressource)
+        );
     }
     /**
      * Delete Ressource
