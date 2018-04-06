@@ -17,6 +17,7 @@ class PIMManager
   private $pim_port;
   private $username;
   private $password;
+
   public function __construct($client_id,$secret,$pim_url,$pim_port,$username,$password) {
     $this->client_id = $client_id;
     $this->secret = $secret;
@@ -52,7 +53,7 @@ class PIMManager
         "cache-control: no-cache",
         "content-type: application/json"
       ));
-      if(($postfields) != NULL)
+      if($postfields != NULL)
         $options[CURLOPT_POSTFIELDS] = $postfields;
       if($authorizationmethod == 'Basic')
         $options[CURLOPT_URL] = $this->pim_url.'/api/oauth/v1/'.$path;
@@ -81,16 +82,19 @@ class PIMManager
      * @param  string  $locales    filter the results upon their language
      * @return RessourcesArrayOfArrays
      */
-    public function getRessources($type)
+    public function getRessources($type,$page,$limit)
     {
+      $query = http_build_query(array(
+        "pagination_type"  => "page",
+        "page" => $page,
+        "limit" => $limit
+      ));
       return $this->sendRequest(
-        $type,
+        sprintf("%s?%s",$type,$query),
         $this->generateToken(),
         'GET',
-        'Bearer',
-        ''
-      );
-    }
+        'Bearer');
+       }
 
     /**
      * Get One ressource based on its identifier
